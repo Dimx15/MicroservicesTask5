@@ -51,6 +51,7 @@ public class UserServiceImpl implements UserService {
         List<GroupRepresentation> userGroups;
         try {
             userRepresentation = keycloakClient.realm(realm).users().get(String.valueOf(id)).toRepresentation();
+            var userRoles1 = userRepresentation.getClientRoles();
             userRoles = keycloakClient.realm(realm)
                     .users().get(String.valueOf(id)).roles().getAll().getRealmMappings();
             userGroups = keycloakClient.realm(realm).users().get(String.valueOf(id)).groups();
